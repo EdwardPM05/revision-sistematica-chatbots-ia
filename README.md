@@ -10,10 +10,12 @@ Revision_Sistematica_Chatbots/
 │   ├── Articulo_revision_sistematica_chatbots_IA.docx
 │   ├── Aval_de_informacion_revision_sistematica.docx
 │   ├── Metodologia_proceso_revision_sistematica.docx
-│   └── PRISMA_identificacion_consolidado.xlsx
+│   ├── PRISMA_identificacion_consolidado.xlsx
+│   └── Anexo_50_articulos_seleccionados.xlsx
 ├── Scripts/              # Scripts de construcción (Node.js)
 │   ├── build.js         # Constructor del "Aval de información" (32 pág.)
-│   └── build_methodology.js  # Constructor del documento metodológico
+│   ├── build_methodology.js  # Constructor del documento metodológico
+│   └── build_anexos.py  # Anexos del artículo: 50 artículos seleccionados + Excel
 ├── Datos/               # Datos fuente y diagramas
 │   ├── incluidos_full.json   # 76 estudios incluidos (fuente de verdad)
 │   ├── data.json             # Versión enriquecida con etiquetas y agregados
@@ -62,6 +64,20 @@ Libro de cálculo consolidado (625 KB) con:
 - **Texto_completo**: 83 registros excluidos en fase de texto completo, 99 no evaluados
 - **Matriz_extraccion**: 76 estudios incluidos con 18 campos cada uno
 - Fórmulas y referencias cruzadas para auditoría
+
+### 5. Anexo_50_articulos_seleccionados.xlsx
+Presentación en Excel de los 50 artículos seleccionados (de los 76 incluidos), con evidencia:
+- **Presentacion**: flujo PRISMA y criterio de selección
+- **Articulos_50**: matriz de extracción con referencia IEEE y DOI
+- **Evidencia**: ID de registro, base, decisión a texto completo, enlace al texto consultado, criterios C1-C5, puntaje, citas y motivo de selección
+- **Resumen**: distribución por sector, tipo, año, base, madurez, región y calidad
+
+Criterio de selección (en orden): citado en la Introducción > puntaje de calidad > evidencia latinoamericana > citas por año.
+
+Los Anexos 1-3 del artículo se generan con:
+```bash
+python3 Scripts/build_anexos.py   # desde la raíz; se puede re-ejecutar
+```
 
 ## Scripts (Node.js)
 
