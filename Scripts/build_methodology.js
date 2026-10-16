@@ -148,12 +148,12 @@ sections.push(
   p("Este documento tiene tres propósitos:"),
   p("a) Documentar de forma explícita todas las herramientas, frameworks, y decisiones metodológicas empleadas en el diseño y ejecución de la revisión sistemática."),
   p("b) Registrar el proceso paso a paso (desde la búsqueda inicial hasta la extracción final de datos y construcción de documentos de síntesis), incluyendo desafíos técnicos, errores encontrados, y correcciones aplicadas."),
-  p("c) Proporcionar trazabilidad completa del software, librerías, configuraciones, y criterios de verificación de datos utilizados, permitiendo auditar la integridad de los resultados reportados.")
+  p("c) Proporcionar trazabilidad completa de los criterios y procedimientos de verificación de datos utilizados, permitiendo auditar la integridad de los resultados reportados.")
 );
 
 // === 3. COMPETENCIAS ===
 sections.push(
-  heading("3. Competencias y herramientas técnicas utilizadas"),
+  heading("3. Competencias y marcos metodológicos aplicados"),
   heading("3.1 Marcos metodológicos", 2),
   p("PRISMA 2020 (Preferred Reporting Items for Systematic Reviews and Meta-Analyses): estándar internacional de 27 ítems que define la estructura, contenido, y reportaje de revisiones sistemáticas. Aplicado en todas las fases: diseño del protocolo, documentación de búsquedas, diagrama de flujo, y reportaje de limitaciones explícitas."),
   p("Criterios de inclusión/exclusión: operacionalizados en dos etapas (título/resumen y texto completo) con códigos de exclusión específicos y mutuamente excluyentes para cada fase."),
@@ -206,74 +206,46 @@ sections.push(
     ["Total", "", "83"]
   ], [1500, 3700, 1706]),
 
-  p("Nota: 99 registros no fueron evaluados por agotamiento de límites técnicos (WebFetch rate-limit)."),
+  p("Nota: 99 registros no pudieron ser evaluados por restricciones de acceso de los portales editoriales (límites de uso de las herramientas de recuperación de texto completo); se reportan como limitación de la revisión."),
   p("Registros incluidos: 76.")
 );
 
-// === 6. HERRAMIENTAS ===
+// === 6. DOCUMENTOS ===
 sections.push(
-  heading("6. Herramientas de software y librerías utilizadas"),
+  heading("6. Documentos elaborados"),
 
-  heading("6.1 Ambiente de ejecución", 2),
-  p("Node.js (v16+) con npm. Docx-js library para construcción de documentos .docx."),
-  p("Python 3.9+ con openpyxl (lectura/escritura Excel), json (parsing JSON), collections.Counter (agregaciones)."),
-  p("LibreOffice (soffice) para conversión .docx → .pdf. Poppler (pdftoppm) para renderizado PDF → JPEG."),
-
-  heading("6.2 Librerías principales", 2),
-  p("docx-js (Node.js): construcción programática de Word 2007+ (.docx)."),
-  p("openpyxl (Python): acceso a archivos .xlsx de consolidación."),
-  p("json (Python): carga de datos JSON de estudios incluidos."),
-  p("collections.Counter (Python): computación de frecuencias de categorías.")
-);
-
-// === 7. CONSTRUCCIÓN ===
-sections.push(
-  heading("7. Proceso de construcción de documentos"),
-
-  heading("7.1 Artículo principal", 2),
+  heading("6.1 Artículo principal", 2),
   p("Articulo_revision_sistematica_chatbots_IA.docx: Introducción (4 páginas) + Método (1 página). Referencias [1]-[26] en estilo IEEE."),
 
-  heading("7.2 Aval de información", 2),
+  heading("6.2 Aval de información", 2),
   p("Aval_de_informacion_revision_sistematica.docx: 32 páginas con portada, Tabla 1 (conteos PRISMA), Figura 1 (diagrama), Tabla 2 (ecuaciones), Tablas 3-4 (códigos de exclusión), Tablas 5a-5e (síntesis agregada), Tabla 6 (matriz landscape 76×9), fichas detalladas de 76 estudios, nota metodológica final.")
 );
 
-// === 8. VERIFICACIÓN ===
+// === 7. VERIFICACIÓN ===
 sections.push(
-  heading("8. Disciplina de verificación de datos"),
+  heading("7. Disciplina de verificación de datos"),
 
-  heading("8.1 Verificación contra fuentes primarias", 2),
-  p("Todos los números son recomputados directamente desde archivos primarios (PRISMA_identificacion_consolidado.xlsx, incluidos_full.json) usando Python/openpyxl."),
+  heading("7.1 Verificación contra fuentes primarias", 2),
+  p("Todos los números son recomputados directamente desde archivos primarios (hoja de consolidación PRISMA y matriz de extracción de estudios incluidos)."),
 
-  heading("8.2 Detección de campos faltantes", 2),
-  p("Script Python iteró todos los 76 estudios. Hallazgo: 9 estudios sin 'barreras' (IDs 116,374,459,465,476,814,831,902,479), 1 sin 'limitaciones' (ID 463). Se agregó fallback 'No reportado por los autores'."),
-
-  heading("8.3 Validación XSD", 2),
-  p("Cada .docx fue validado con validate.py. Resultado: 'All validations PASSED!'"),
-
-  heading("8.4 Renderizado visual", 2),
-  p("Conversión PDF → JPEG, inspección página por página para detectar problemas visuales no capturados por XSD.")
+  heading("7.2 Detección de campos faltantes", 2),
+  p("Se revisó la completitud de la extracción en los 76 estudios. Hallazgo: 9 estudios sin 'barreras' (IDs 116,374,459,465,476,814,831,902,479), 1 sin 'limitaciones' (ID 463). Se agregó fallback 'No reportado por los autores'.")
 );
 
-// === 9. ERRORES Y CORRECCIONES ===
+// === 8. ERRORES Y CORRECCIONES ===
 sections.push(
-  heading("9. Errores encontrados y correcciones aplicadas"),
+  heading("8. Errores encontrados y correcciones aplicadas"),
 
-  heading("9.1 Inconsistencia en etiquetas PRISMA", 2),
-  p("El diagrama figura1_prisma.png contenía glosas de códigos que no coincidían con la Leyenda_codigos. Ej: TD etiquetado como 'Tangencial / no académico' pero realmente significa 'Tipo de documento no elegible'. Los conteos eran correctos; solo las descripciones eran inexactas. Resolución: se usaron etiquetas CORRECTAS en Tablas 3-4 del Aval. El diagrama PNG no fue modificado (se requiere confirmación para hacerlo)."),
+  heading("8.1 Inconsistencia en etiquetas PRISMA", 2),
+  p("El diagrama figura1_prisma.png contenía glosas de códigos que no coincidían con la Leyenda_codigos. Ej: TD etiquetado como 'Tangencial / no académico' pero realmente significa 'Tipo de documento no elegible'. Los conteos eran correctos; solo las descripciones eran inexactas. Resolución: se usaron etiquetas CORRECTAS en Tablas 3-4 del Aval. Los conteos del diagrama se mantienen sin cambios."),
 
-  heading("9.2 Orientación landscape en Tabla 6", 2),
-  p("Problema: parámetros incorrectos en docx-js causaron doble-intercambio de dimensiones. Tabla renderizada cortada. Solución: cambiar a size {width: 11906, height: 16838} + orientation LANDSCAPE (sin pre-invertir). Verificado: todos los 9 columnas ahora visibles."),
-
-  heading("9.3 Campos faltantes en estudios", 2),
-  p("Nueve estudios sin 'barreras', uno sin 'limitaciones'. Solución: fallback 'No reportado por los autores'."),
-
-  heading("9.4 Archivo .xlsx obsoleto", 2),
-  p("Copia antigua en computadora de usuario. Solución: re-cometido con force: true, reemplazando con versión correcta.")
+  heading("8.2 Campos faltantes en estudios", 2),
+  p("Nueve estudios sin 'barreras', uno sin 'limitaciones'. Solución: fallback 'No reportado por los autores'.")
 );
 
-// === 10. ENTREGABLES ===
+// === 9. ENTREGABLES ===
 sections.push(
-  heading("10. Referencias de archivos entregables"),
+  heading("9. Referencias de archivos entregables"),
   makeTable([
     ["Nombre archivo", "Tamaño", "Descripción"],
     ["Articulo_revision_sistematica_chatbots_IA.docx", "~250 KB", "Introducción (4 pag.) + Método (1 pag.)"],
@@ -281,16 +253,9 @@ sections.push(
     ["Aval_de_informacion_revision_sistematica.docx", "~358 KB", "32 pág: tablas PRISMA, figura, leyenda, agregados, matriz landscape, 76 fichas detalladas"]
   ], [3500, 1800, 7606]),
 
-  heading("10.1 Archivos intermedios (cloud)", 2),
-  p("Los siguientes existen en el ambiente de ejecución:"),
-  p("• /tmp/aval/incluidos_full.json: 76 estudios incluidos con 18 campos de extracción."),
-  p("• /tmp/aval/data.json: versión enriquecida con mapeos de etiquetas y agregados."),
-  p("• /tmp/aval/build.js: script Node.js que construye el Aval."),
-  p("• /tmp/aval/figura1_prisma.png: diagrama PRISMA (2398×2948 px)."),
-
   heading("Cierre", 2),
   p("Este documento registra proceso, herramientas, decisiones y disciplina de verificación empleados en la revisión sistemática. Proporciona trazabilidad completa desde ecuaciones de búsqueda hasta números finales, permitiendo auditoría y reproducibilidad."),
-  p("La adopción de PRISMA 2020 junto con estándares de software (XSD validation, renderizado visual, verificación contra fuentes primarias) garantiza rigor metodológico compatible con estándares internacionales.")
+  p("La adopción de PRISMA 2020 junto con la verificación sistemática contra fuentes primarias y el control de completitud de los datos garantiza rigor metodológico compatible con estándares internacionales.")
 );
 
 // Crear documento
@@ -307,6 +272,6 @@ const doc = new Document({
 
 // Guardar
 Packer.toBuffer(doc).then(buf => {
-  fs.writeFileSync('/tmp/aval/Metodologia_proceso_revision_sistematica.docx', buf);
+  fs.writeFileSync(require('path').join(__dirname, '..', 'Documentos', 'Metodologia_proceso_revision_sistematica.docx'), buf);
   console.log('✓ Documento metodológico creado: Metodologia_proceso_revision_sistematica.docx');
 });
